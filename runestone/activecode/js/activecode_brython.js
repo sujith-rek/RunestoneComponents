@@ -44,7 +44,6 @@ export default class BrythonActiveCode extends ActiveCode {
             <script type='text/python'>
 import sys
 from browser import document, html
-from browser.html import *
 
 logger = document['consoleCode']
 preElem = document['consolePre']
@@ -57,29 +56,30 @@ sys.stderr = sys.stdout = NewOut()
             <script type="text/python3">
 from browser import document, html
 import sys
+import traceback
 
-try:
-    exec("""${prog}
-""")
-    preElem = document['consolePre']
-    preElem.style.visibility = "visible"
-    preElem.style.bottom = "5px"
-    document['consoleCode'].classList.add("plaintext")
-
-except Exception as msg:
-    
-    # formatting sys.exc_info()
-    trace = str(sys.exc_info())
+def my_exec(code):
     try:
-        trace_list = trace.split(",")
-        err_type = trace_list[1].split('(')[0][1:]
-        line = trace_list[3][1:] if err_type != 'IndentationError' else "'unknown'"
-        result =  f"'{err_type}': {msg} on line {line}."
-    except Exception as e:
-        result = trace.replace(',',"")
-    print(result)
+        exec(code)
+        preElem = document['consolePre']
+        preElem.style.visibility = "visible"
+        preElem.style.bottom = "5px"
+        document['consoleCode'].classList.add("plaintext")
+    except SyntaxError as err:
+        error_class = err.__class__.__name__
+        detail = err.args[0]
+        line_number = err.lineno
+    except Exception as err:
+        error_class = err.__class__.__name__
+        detail = err.args[0]
+        cl, exc, tb = sys.exc_info()
+        line_number = traceback.extract_tb(tb)[-1][1]
+    else:
+        return
     
-    # Styling the pre element for error
+    # This is only done if an Exception was catched
+    result = f"'{error_class}': {detail} at line {line_number}."
+    print(result)
     logger = document['consoleCode']
     preElem = document['consolePre']
     error_header = document.createElement("h3")
@@ -91,6 +91,9 @@ except Exception as msg:
     preElem.style.backgroundColor = "#f2dede"
     preElem.style.border = "1px solid #ebccd1"
     logger.classList.add("python")
+
+my_exec("""${prog}
+""")
 
 document <= html.SCRIPT("hljs.highlightAll();")
             </script>
