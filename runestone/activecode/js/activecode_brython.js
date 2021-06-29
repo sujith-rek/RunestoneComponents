@@ -60,7 +60,7 @@ import traceback
 
 def my_exec(code):
     try:
-        exec(code)
+        exec(code, locals())
         preElem = document['consolePre']
         preElem.style.visibility = "visible"
         preElem.style.bottom = "5px"
@@ -68,20 +68,25 @@ def my_exec(code):
     except SyntaxError as err:
         error_class = err.__class__.__name__
         detail = err.args[0]
-        line_number = err.lineno
-    except Exception as err:
+        line_number = f"at line {err.lineno}"
+    except BaseException as err:
         error_class = err.__class__.__name__
         detail = err.args[0]
         cl, exc, tb = sys.exc_info()
-        line_number = traceback.extract_tb(tb)[-1][1]
+        # When errors don't specify a line
+        try:
+            line_number = f"at line {traceback.extract_tb(tb)[-1][1]}"
+        except:
+            line_number = ""
     else:
         return
     
     # This is only done if an Exception was catched
-    result = f"'{error_class}': {detail} at line {line_number}."
+    result = f"'{error_class}': {detail} {line_number}"
     print(result)
     logger = document['consoleCode']
     preElem = document['consolePre']
+    # Styling the pre element for error
     error_header = document.createElement("h3")
     error_header.innerHTML = "Error"
     error_header.style.font = "24px 'Arial'"
