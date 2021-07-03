@@ -2832,7 +2832,7 @@ Trying Brython as Python 3 interpreter
    :language: python3
    :python3_interpreter: brython 
 
-   print("You can see this print on the browser console")
+   print("You can see this print inside the iframe console")
    from browser import document, alert, html
 
    def hello(ev):
