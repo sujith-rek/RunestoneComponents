@@ -31,6 +31,7 @@ export default class BrythonActiveCode extends ActiveCode {
             <style>
                 pre {
                     position: absolute; font-size: 13px; width: 94%; padding: 9.5px; line-height: 1.42857143; border: 1px ; border-radius: 4px;
+                    overflow: auto; height: 200px; clear: both; position: sticky; top: 0; resize: both; background: white;
                 }
                 code{
                     border: 1px solid #ccc; border-radius: 4px;
@@ -63,8 +64,11 @@ def my_exec(code):
         exec(code, locals())
         preElem = document['consolePre']
         preElem.style.visibility = "visible"
-        preElem.style.bottom = "5px"
         document['consoleCode'].classList.add("plaintext")
+        out_header = document.createElement("h3")
+        out_header.innerHTML = "Output"
+        out_header.style.font = "24px 'Arial'"
+        preElem.prepend(out_header)
     except SyntaxError as err:
         error_class = err.__class__.__name__
         detail = err.args[0]
