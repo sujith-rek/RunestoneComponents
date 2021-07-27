@@ -30,45 +30,40 @@ export default class BrythonActiveCode extends ActiveCode {
             <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
             <style>
                 pre {
-                    position: absolute; font-size: 13px; width: 94%; padding: 9.5px; line-height: 1.42857143; border: 1px ; border-radius: 4px;
-                    overflow: auto; height: 200px; clear: both; position: sticky; top: 0; resize: both; background: white;
+                    position: absolute; font-size: 13px; width: 94%; padding: 9.5px; line-height: 1.42857143; border: 1px solid #ccc; border-radius: 4px;
+                    overflow: auto; height: 200px; clear: both; position: sticky; bottom: 0; resize: both; background: white; 
                 }
                 code{
                     border: 1px solid #ccc; border-radius: 4px;
                 }
             </style>
         </head>
-        <body onload='brython()' >
-            <pre id="consolePre">
-                <code id="consoleCode"></code>
-            </pre>
+        <body onload='brython()'>
             <script type='text/python'>
 import sys
 from browser import document, html
+import traceback
 
-logger = document['consoleCode']
-preElem = document['consolePre']
+preElem = html.PRE()
+logger = html.CODE()
+preElem <= logger
+
 class NewOut:
     def write(self, data):
         logger.innerHTML += str(data)
 
 sys.stderr = sys.stdout = NewOut()
-            </script>
-            <script type="text/python3">
-from browser import document, html
-import sys
-import traceback
 
 def my_exec(code):
     try:
         exec(code, locals())
-        preElem = document['consolePre']
         preElem.style.visibility = "visible"
-        document['consoleCode'].classList.add("plaintext")
-        out_header = document.createElement("h3")
+        out_header = document.createElement("h4")
         out_header.innerHTML = "Output"
         out_header.style.font = "24px 'Arial'"
+        logger.classList.add("plaintext")
         preElem.prepend(out_header)
+        document <= preElem
     except SyntaxError as err:
         error_class = err.__class__.__name__
         detail = err.args[0]
@@ -88,18 +83,15 @@ def my_exec(code):
     # This is only done if an Exception was catched
     result = f"'{error_class}': {detail} {line_number}"
     print(result)
-    logger = document['consoleCode']
-    preElem = document['consolePre']
     # Styling the pre element for error
     error_header = document.createElement("h3")
     error_header.innerHTML = "Error"
     error_header.style.font = "24px 'Arial'"
     preElem.prepend(error_header)
     preElem.style.visibility = "visible"
-    preElem.style.top = "5px"
-    preElem.style.backgroundColor = "#f2dede"
-    preElem.style.border = "1px solid #ebccd1"
     logger.classList.add("python")
+
+    document <= preElem
 
 my_exec("""${prog}
 """)
