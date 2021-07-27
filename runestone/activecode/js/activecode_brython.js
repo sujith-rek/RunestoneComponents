@@ -89,6 +89,9 @@ def my_exec(code):
     error_header.style.font = "24px 'Arial'"
     preElem.prepend(error_header)
     preElem.style.visibility = "visible"
+    preElem.style.top = "5px"
+    preElem.style.backgroundColor = "#f2dede"
+    preElem.style.border = "1px solid #ebccd1"
     logger.classList.add("python")
 
     document <= preElem
