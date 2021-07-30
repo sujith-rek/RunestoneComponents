@@ -29,18 +29,18 @@ export default class BrythonActiveCode extends ActiveCode {
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
             <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
             <style>
-                pre {
-                    position: sticky; max-height: 200px; width: 94%; overflow: auto; clear: both; resize: both; padding: 12px;
-                    background: white; font-size: 13px; line-height: 1.42857143; border: 1px solid #ccc; border-radius: 4px;
-                }
-                code{
-                    border: 1px solid #ccc; border-radius: 4px;
-                }
                 html, body{
                     height: max-content; width: 100%;
                 }
                 .container-pre{
-                    position: fixed; bottom: 0px; width: 100%;
+                    background: white; font-size: 13px; line-height: 1.42857143; border: 1px solid #ccc; border-radius: 4px; 
+                    position: fixed; bottom: 0px; width: 94%; max-height: 200px; overflow: auto; clear: both; resize: both; transform: scale(1, -1);
+                }
+                pre {
+                    position: sticky; padding: 12px; transform: scale(1, -1);
+                }
+                code{
+                    border: 1px solid #ccc; border-radius: 4px;
                 }
             </style>
         </head>
@@ -109,7 +109,7 @@ my_exec("""${prog}
 """)
 
 document <= html.SCRIPT("hljs.highlightAll();")
-document <= html.SCRIPT("let container = document.querySelector('.container-pre'); let height = container.offsetHeight; console.log(height); document.body.style.paddingBottom = String(height)+'px';")
+document <= html.SCRIPT("let container = document.querySelector('.container-pre'); let height = container.offsetHeight; document.body.style.paddingBottom = String(height)+'px';")
             </script>
         </body>
         </html>
