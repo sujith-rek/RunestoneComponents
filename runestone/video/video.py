@@ -48,7 +48,7 @@ POPUP = """\
     <div class='video-play-overlay'></div>
 </a>
 <script>
-  window.addEventListener('load', (event) => {
+  document.addEventListener('load', (event) => {
     jQuery(function ($) {
        $('#%(divid)s_thumb').click(function (e) {
                 $('#%(divid)s').modal();
@@ -62,7 +62,7 @@ POPUP = """\
 
 INLINE = """\
 <script>
-  window.addEventListener('load', (event) => {
+  document.addEventListener('load', (event) => {
     jQuery(function($) {
         var rb = new RunestoneBase();
         $('#%(divid)s_thumb').click(function(e) {

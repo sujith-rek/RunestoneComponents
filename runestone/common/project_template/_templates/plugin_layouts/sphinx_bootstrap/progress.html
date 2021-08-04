@@ -65,7 +65,7 @@
             document.getElementById("progressBar").style.width = book.curChapterPercent-1 + "%";
         }
     }
-    window.addEventListener('load', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         loadProgressBar();
     }, false);
 </script>
