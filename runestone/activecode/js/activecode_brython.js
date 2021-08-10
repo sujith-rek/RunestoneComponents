@@ -33,8 +33,8 @@ export default class BrythonActiveCode extends ActiveCode {
                     height: max-content; width: 100%;
                 }
                 .container-pre{
-                    background: white; font-size: 13px; line-height: 1.42857143; border: 1px solid #ccc; border-radius: 4px; 
-                    position: fixed; bottom: 0px; width: 94%; max-height: 200px; overflow: auto; clear: both; resize: both; transform: scale(1, -1);
+                    background: white; font-size: 13px; line-height: 1.42857143; border: 1px solid #ccc; border-radius: 4px; visibility: hidden;
+                    position: fixed; bottom: 0px; width: 94%; max-width: 96%; max-height: 200px; overflow: auto; clear: both; resize: both; transform: scale(1, -1);
                 }
                 pre {
                     position: sticky; padding: 12px; transform: scale(1, -1);
@@ -65,7 +65,7 @@ sys.stderr = sys.stdout = NewOut()
 def my_exec(code):
     try:
         exec(code, locals())
-        preElem.style.visibility = "visible"
+        container.style.visibility = "visible"
         out_header = document.createElement("text")
         out_header.innerHTML = "Output"
         out_header.style.font = "24px 'Arial'"
@@ -98,10 +98,10 @@ def my_exec(code):
     error_header.innerHTML = "Error"
     error_header.style.font = "24px 'Arial'"
     preElem.prepend(error_header)
-    preElem.style.visibility = "visible"
-    preElem.style.backgroundColor = "#f2dede"
-    preElem.style.border = "1px solid #ebccd1"
-    logger.classList.add("python")
+    container.style.visibility = "visible"
+    container.style.backgroundColor = "#f2dede"
+    container.style.border = "1px solid #ebccd1"
+    logger.classList.add("plaintext")
 
     document <= container
 
