@@ -59,13 +59,13 @@ container <= preElem
 class NewOut:
     def write(self, data):
         logger.innerHTML += str(data)
+        container.style.visibility = "visible"
 
 sys.stderr = sys.stdout = NewOut()
 
 def my_exec(code):
     try:
         exec(code, locals())
-        container.style.visibility = "visible"
         out_header = document.createElement("text")
         out_header.innerHTML = "Output"
         out_header.style.font = "24px 'Arial'"
@@ -98,7 +98,6 @@ def my_exec(code):
     error_header.innerHTML = "Error"
     error_header.style.font = "24px 'Arial'"
     preElem.prepend(error_header)
-    container.style.visibility = "visible"
     container.style.backgroundColor = "#f2dede"
     container.style.border = "1px solid #ebccd1"
     logger.classList.add("plaintext")
