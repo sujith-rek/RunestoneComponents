@@ -24,8 +24,8 @@ export default class BrythonActiveCode extends ActiveCode {
         prog = `
         <html>
         <head>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.4/brython.min.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.4/brython_stdlib.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython_stdlib.min.js"></script>
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
             <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
             <style>
@@ -33,8 +33,8 @@ export default class BrythonActiveCode extends ActiveCode {
                     height: max-content; width: 100%;
                 }
                 .container-pre{
-                    background: white; font-size: 13px; line-height: 1.42857143; border: 1px solid #ccc; border-radius: 4px; 
-                    position: fixed; bottom: 0px; width: 94%; max-height: 200px; overflow: auto; clear: both; resize: both; transform: scale(1, -1);
+                    background: white; font-size: 13px; line-height: 1.42857143; border: 1px solid #ccc; border-radius: 4px; visibility: hidden;
+                    position: fixed; bottom: 0px; width: 94%; max-width: 96%; max-height: 200px; overflow: auto; clear: both; resize: both; transform: scale(1, -1);
                 }
                 pre {
                     position: sticky; padding: 12px; transform: scale(1, -1);
@@ -59,13 +59,13 @@ container <= preElem
 class NewOut:
     def write(self, data):
         logger.innerHTML += str(data)
+        container.style.visibility = "visible"
 
 sys.stderr = sys.stdout = NewOut()
 
 def my_exec(code):
     try:
         exec(code, locals())
-        preElem.style.visibility = "visible"
         out_header = document.createElement("text")
         out_header.innerHTML = "Output"
         out_header.style.font = "24px 'Arial'"
@@ -98,15 +98,14 @@ def my_exec(code):
     error_header.innerHTML = "Error"
     error_header.style.font = "24px 'Arial'"
     preElem.prepend(error_header)
-    preElem.style.visibility = "visible"
-    preElem.style.backgroundColor = "#f2dede"
-    preElem.style.border = "1px solid #ebccd1"
-    logger.classList.add("python")
+    container.style.backgroundColor = "#f2dede"
+    container.style.border = "1px solid #ebccd1"
+    logger.classList.add("plaintext")
 
     document <= container
 
-my_exec("""${prog}
-""")
+my_prog = ${JSON.stringify(prog)}
+my_exec(my_prog)
 
 document <= html.SCRIPT("hljs.highlightAll();")
 document <= html.SCRIPT("let container = document.querySelector('.container-pre'); let height = container.offsetHeight; document.body.style.paddingBottom = String(height)+'px';")
