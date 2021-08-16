@@ -64,7 +64,7 @@ window.onYouTubeIframeAPIReady = function () {
 
 //Need to make sure the YouTube IFrame Player API is not loaded until after
 // all YouTube videos are in the DOM. Add a script tag with it after document is loaded
-$(function () {
+$(document).ready(function () {
     let script = document.createElement("script");
     script.src = "https://www.youtube.com/player_api";
     document.body.appendChild(script);

@@ -6,7 +6,7 @@
 #
 alabaster==0.7.12
     # via sphinx
-astroid==2.6.5
+astroid==2.5.6
     # via pylint
 atomicwrites==1.4.0
     # via pytest
@@ -16,17 +16,17 @@ attrs==21.2.0
     #   pytest
 babel==2.9.1
     # via sphinx
-bleach==3.3.1
+bleach==3.3.0
     # via readme-renderer
-certifi==2021.5.30
+certifi==2020.12.5
     # via requests
-charset-normalizer==2.0.3
+chardet==4.0.0
     # via requests
 click==7.1.2
     # via
     #   -r requirements.in
     #   pip-tools
-codechat==1.8.8
+codechat==1.8.6
     # via -r requirements.in
 cogapp==3.0.0
     # via -r requirements.in
@@ -45,19 +45,19 @@ docutils==0.16
     #   sphinx
 easyprocess==0.3
     # via pyvirtualdisplay
-greenlet==1.1.0
+greenlet==1.0.0
     # via sqlalchemy
-idna==3.2
+idna==2.10
     # via requests
 imagesize==1.2.0
     # via sphinx
-importlib-metadata==4.6.1
+importlib-metadata==4.0.1
     # via
     #   keyring
     #   twine
 iniconfig==1.1.1
     # via pytest
-isort==5.9.3
+isort==5.8.0
     # via pylint
 jinja2==3.0.1
     # via
@@ -90,30 +90,30 @@ paver==1.3.4
     # via
     #   -r requirements.in
     #   sphinxcontrib-paverutils
-pep517==0.11.0
+pep517==0.10.0
     # via pip-tools
-pip-tools==6.2.0
+pip-tools==6.1.0
     # via -r requirements-dev.in
-pkginfo==1.7.1
+pkginfo==1.7.0
     # via twine
 pluggy==0.13.1
     # via pytest
 py==1.10.0
     # via pytest
-pygments==2.9.0
+pygments==2.8.1
     # via
     #   codechat
     #   readme-renderer
     #   sphinx
-pylint==2.9.6
+pylint==2.8.2
     # via -r requirements-dev.in
 pyparsing==2.4.7
     # via packaging
-pytest==6.2.4
+pytest==6.2.3
     # via -r requirements-dev.in
 pytz==2021.1
     # via babel
-pyvirtualdisplay==2.2
+pyvirtualdisplay==2.1
     # via -r requirements-dev.in
 pywin32-ctypes==0.2.0
     # via keyring
@@ -134,7 +134,7 @@ rfc3986==1.5.0
     # via twine
 selenium==3.141.0
     # via -r requirements-dev.in
-six==1.16.0
+six==1.15.0
     # via
     #   -r requirements.in
     #   bleach
@@ -151,7 +151,7 @@ sphinxcontrib-applehelp==1.0.2
     # via sphinx
 sphinxcontrib-devhelp==1.0.2
     # via sphinx
-sphinxcontrib-htmlhelp==2.0.0
+sphinxcontrib-htmlhelp==1.0.3
     # via sphinx
 sphinxcontrib-jsmath==1.0.1
     # via sphinx
@@ -159,33 +159,30 @@ sphinxcontrib-paverutils==1.17.0
     # via -r requirements.in
 sphinxcontrib-qthelp==1.0.3
     # via sphinx
-sphinxcontrib-serializinghtml==1.1.5
+sphinxcontrib-serializinghtml==1.1.4
     # via sphinx
-sqlalchemy==1.4.22
+sqlalchemy==1.4.12
     # via -r requirements.in
 toml==0.10.2
     # via
+    #   pep517
     #   pylint
     #   pytest
-tomli==1.2.0
-    # via pep517
-tqdm==4.61.2
+tqdm==4.60.0
     # via twine
-twine==3.4.2
+twine==3.4.1
     # via -r requirements-dev.in
-urllib3==1.26.6
+urllib3==1.26.4
     # via
     #   requests
     #   selenium
 webencodings==0.5.1
     # via bleach
 wheel==0.36.2
-    # via
-    #   -r requirements-dev.in
-    #   pip-tools
+    # via -r requirements-dev.in
 wrapt==1.12.1
     # via astroid
-zipp==3.5.0
+zipp==3.4.1
     # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:

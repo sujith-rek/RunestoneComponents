@@ -46,7 +46,7 @@ Misc
     .gitignore
     .readthedocs.yml
     conf.py
-    codechat_config.yaml
+    codechat_config.json
     requirements-dev.in
     requirements.in
     webpack.config.js

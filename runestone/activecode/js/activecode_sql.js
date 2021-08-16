@@ -40,13 +40,15 @@ export default class SQLActiveCode extends ActiveCode {
                 } else {
                     if (allDburls[self.dburl].status == "loading") {
                         allDburls[self.dburl].xWaitFor.done(function () {
-                            self.db = allDburls[self.dburl].dbObject;
+                            self.db = new SQL.Database(
+                                allDburls[self.dburl].db
+                            );
                             $(self.runButton).removeAttr("disabled");
                             $(self.runButton).text(buttonText);
                         });
                         return;
                     }
-                    self.db = allDburls[self.dburl].dbObject;
+                    self.db = new SQL.Database(allDburls[self.dburl].db);
                     $(self.runButton).removeAttr("disabled");
                     $(self.runButton).text(buttonText);
                     return;
@@ -58,7 +60,6 @@ export default class SQLActiveCode extends ActiveCode {
                 xhr.onload = (e) => {
                     var uInt8Array = new Uint8Array(xhr.response);
                     self.db = new SQL.Database(uInt8Array);
-                    allDburls[self.dburl].dbObject = self.db;
                     $(self.runButton).text(buttonText);
                     $(self.runButton).removeAttr("disabled");
                     allDburls[self.dburl].db = uInt8Array;

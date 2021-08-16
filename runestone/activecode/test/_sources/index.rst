@@ -3,14 +3,6 @@
 ActiveCode Test
 ===============
 
-.. toctree::
-   :caption: Contenido
-   :maxdepth: 1
-
-   T1.rst
-   T2.rst
-
-
 Note: an existing server-side test is named ``test_activecode_1``. So, we start numbering here at 2.
 
 .. activecode:: test_activecode_2
@@ -242,15 +234,6 @@ Support for SQL in the browser ?  Yes!
 
     select * from test;
 
-.. activecode:: test_activecode_6b
-    :language: sql
-    :autograde: unittest
-    :dburl: /_static/test.db
-
-    select * from created_table;
-
-    =====
-    assert 0,0 == itworks
 
 .. activecode:: sql3
     :language: sql
@@ -2843,7 +2826,6 @@ Support for SQL in the browser ?  Yes!
         }
 
       } // end of World class
-
 
 Trying Brython as Python 3 interpreter
 --------------------------------------
