@@ -2,6 +2,15 @@
 
 ActiveCode Test
 ===============
+
+.. toctree::
+   :caption: Contenido
+   :maxdepth: 1
+
+   T1.rst
+   T2.rst
+
+
 Note: an existing server-side test is named ``test_activecode_1``. So, we start numbering here at 2.
 
 .. activecode:: test_activecode_2
@@ -2834,3 +2843,20 @@ Support for SQL in the browser ?  Yes!
         }
 
       } // end of World class
+
+
+Trying Brython as Python 3 interpreter
+--------------------------------------
+.. activecode:: test_activecode_python3
+   :language: python3
+   :python3_interpreter: brython 
+
+   print("You can see this print inside the iframe console")
+   from browser import document, alert, html
+
+   def hello(ev):
+       alert("Hello! I'm using Brython :D")
+
+   document <= html.BUTTON("My button", id="button_alert")
+   document["button_alert"].bind("click", hello)
+
