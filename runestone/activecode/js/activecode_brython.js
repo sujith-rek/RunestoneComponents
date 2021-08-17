@@ -49,7 +49,6 @@ export default class BrythonActiveCode extends ActiveCode {
 import sys
 from browser import document, html
 import traceback
-
 preElem = html.PRE()
 logger = html.CODE()
 container = html.DIV()
@@ -60,9 +59,7 @@ class NewOut:
     def write(self, data):
         logger.innerHTML += str(data)
         container.style.visibility = "visible"
-
 sys.stderr = sys.stdout = NewOut()
-
 def my_exec(code):
     try:
         exec(code, locals())
@@ -101,12 +98,9 @@ def my_exec(code):
     container.style.backgroundColor = "#f2dede"
     container.style.border = "1px solid #ebccd1"
     logger.classList.add("plaintext")
-
     document <= container
-
 my_prog = ${JSON.stringify(prog)}
 my_exec(my_prog)
-
 document <= html.SCRIPT("hljs.highlightAll();")
 document <= html.SCRIPT("let container = document.querySelector('.container-pre'); let height = container.offsetHeight; document.body.style.paddingBottom = String(height)+'px';")
             </script>

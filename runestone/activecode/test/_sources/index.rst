@@ -2,6 +2,7 @@
 
 ActiveCode Test
 ===============
+
 Note: an existing server-side test is named ``test_activecode_1``. So, we start numbering here at 2.
 
 .. activecode:: test_activecode_2
@@ -2840,3 +2841,4 @@ Trying Brython as Python 3 interpreter
 
    document <= html.BUTTON("My button", id="button_alert")
    document["button_alert"].bind("click", hello)
+
