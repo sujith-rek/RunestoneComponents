@@ -179,6 +179,7 @@ export class ActiveCode extends RunestoneBase {
                 "Shift-Tab": "indentLess",
             },
         });
+        console.log("mememememmee");
         // Make the editor resizable
         $(editor.getWrapperElement()).resizable({
             resize: function () {
@@ -243,9 +244,9 @@ export class ActiveCode extends RunestoneBase {
 
     async runButtonHandler() {
         // Disable the run button until the run is finished.
+        console.log("running code meowmeow");
         this.runButton.disabled = true;
         try {
-            console.log("running code meowmeow");
             await this.runProg();
         } catch (e) {
             console.log(`there was an error ${e} running the code`);
