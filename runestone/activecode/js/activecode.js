@@ -245,6 +245,7 @@ export class ActiveCode extends RunestoneBase {
         // Disable the run button until the run is finished.
         this.runButton.disabled = true;
         try {
+            console.log("running code meowmeow");
             await this.runProg();
         } catch (e) {
             console.log(`there was an error ${e} running the code`);
@@ -1200,6 +1201,7 @@ Yet another is that there is an internal error.  The internal error message is: 
             suffix: this.suffix,
             partner: this.partner,
         }); // Log the run event
+        console.log("logCurrentAnswer meowmeow");
         // If unit tests were run there will be a unit_results
         if (this.unit_results) {
             this.logBookEvent({
