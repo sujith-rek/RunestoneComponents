@@ -1192,7 +1192,7 @@ Yet another is that there is an internal error.  The internal error message is: 
     }
 
     logCurrentAnswer() {
-        this.logRunEvent({
+        let data = {
             div_id: this.divid,
             code: this.editor.getValue(),
             lang: this.language,
@@ -1201,8 +1201,14 @@ Yet another is that there is an internal error.  The internal error message is: 
             prefix: this.pretext,
             suffix: this.suffix,
             partner: this.partner,
-        }); // Log the run event
-        console.log("logCurrentAnswer meowmeow");
+        };
+        if (localStorage.getItem(div_id) != null) {
+            data['code'] = localStorage.getItem(div_id);
+        }
+        else {
+            localStorage.setItem(div_id, data['code']);
+        }
+        this.logRunEvent(data); // Log the run event
         // If unit tests were run there will be a unit_results
         if (this.unit_results) {
             this.logBookEvent({
