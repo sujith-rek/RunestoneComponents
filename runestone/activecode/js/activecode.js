@@ -1202,11 +1202,11 @@ Yet another is that there is an internal error.  The internal error message is: 
             suffix: this.suffix,
             partner: this.partner,
         };
-        if (localStorage.getItem(div_id) != null) {
-            data['code'] = localStorage.getItem(div_id);
+        if (localStorage.getItem(this.divid) != null) {
+            data['code'] = localStorage.getItem(this.divid);
         }
         else {
-            localStorage.setItem(div_id, data['code']);
+            localStorage.setItem(this.divid, data['code']);
         }
         this.logRunEvent(data); // Log the run event
         // If unit tests were run there will be a unit_results
