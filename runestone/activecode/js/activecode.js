@@ -179,11 +179,11 @@ export class ActiveCode extends RunestoneBase {
                 "Shift-Tab": "indentLess",
             },
         }
-        // if(this.localStorage.getItem(this.divid) !== null){
-        //     opts.value = this.localStorage.getItem(this.divid);
-        // }else{
-        //     this.localStorage.setItem(this.divid, this.code);
-        // }
+        if(this.localStorage.getItem(this.divid) !== null){
+            opts['value'] = this.localStorage.getItem(this.divid);
+        }else{
+            this.localStorage.setItem(this.divid, this.code);
+        }
         var editor = CodeMirror(codeDiv,opts );
         
         // Make the editor resizable
@@ -1207,12 +1207,9 @@ Yet another is that there is an internal error.  The internal error message is: 
             suffix: this.suffix,
             partner: this.partner,
         };
-        if (localStorage.getItem(this.divid) != null) {
-            data['code'] = localStorage.getItem(this.divid);
-        }
-        else {
-            localStorage.setItem(this.divid, data['code']);
-        }
+        
+        localStorage.setItem(this.divid, data['code']);
+        
         this.logRunEvent(data); // Log the run event
         // If unit tests were run there will be a unit_results
         if (this.unit_results) {
@@ -1299,6 +1296,9 @@ Yet another is that there is an internal error.  The internal error message is: 
         });
         Sk.divid = this.divid;
         Sk.logResults = logResults;
+
+        localStorage.setItem(this.divid,this.code);
+
         if (this.graderactive && this.outerDiv.closest(".loading")) {
             Sk.gradeContainer = this.outerDiv.closest(".loading").id;
         } else {
