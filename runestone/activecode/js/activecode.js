@@ -179,11 +179,11 @@ export class ActiveCode extends RunestoneBase {
                 "Shift-Tab": "indentLess",
             },
         }
-        if(this.localStorage.getItem(this.divid) !== null){
-            opts['value'] = this.localStorage.getItem(this.divid);
-        }else{
-            this.localStorage.setItem(this.divid, this.code);
-        }
+        // if(this.localStorage.getItem(this.divid) !== null){
+        //     opts['value'] = localStorage.getItem(this.divid);
+        // }else{
+        //     localStorage.setItem(this.divid, this.code);
+        // }
         var editor = CodeMirror(codeDiv,opts );
         
         // Make the editor resizable
