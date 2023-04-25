@@ -167,7 +167,7 @@ export class ActiveCode extends RunestoneBase {
         } else if (edmode === "octave" || edmode === "MATLAB") {
             edmode = "text/x-octave";
         }
-        var editor = CodeMirror(codeDiv, {
+        var opts = {
             value: this.code,
             lineNumbers: true,
             mode: edmode,
@@ -178,8 +178,14 @@ export class ActiveCode extends RunestoneBase {
                 Tab: "indentMore",
                 "Shift-Tab": "indentLess",
             },
-        });
-        console.log("mememememmee");
+        }
+        if(this.localStorage.getItem(this.divid) !== null){
+            opts.value = this.localStorage.getItem(this.divid);
+        }else{
+            this.localStorage.setItem(this.divid, this.code);
+        }
+        var editor = CodeMirror(codeDiv,opts );
+        
         // Make the editor resizable
         $(editor.getWrapperElement()).resizable({
             resize: function () {
@@ -244,7 +250,6 @@ export class ActiveCode extends RunestoneBase {
 
     async runButtonHandler() {
         // Disable the run button until the run is finished.
-        console.log("running code meowmeow");
         this.runButton.disabled = true;
         try {
             await this.runProg();
