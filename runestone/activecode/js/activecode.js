@@ -179,11 +179,11 @@ export class ActiveCode extends RunestoneBase {
                 "Shift-Tab": "indentLess",
             },
         }
-        if(this.localStorage.getItem(this.divid) !== null){
-            opts.value = this.localStorage.getItem(this.divid);
-        }else{
-            this.localStorage.setItem(this.divid, this.code);
-        }
+        // if(this.localStorage.getItem(this.divid) !== null){
+        //     opts.value = this.localStorage.getItem(this.divid);
+        // }else{
+        //     this.localStorage.setItem(this.divid, this.code);
+        // }
         var editor = CodeMirror(codeDiv,opts );
         
         // Make the editor resizable
@@ -249,7 +249,7 @@ export class ActiveCode extends RunestoneBase {
     }
 
     async runButtonHandler() {
-        // Disable the run button until the run is finished.
+        // Disable the run button until the run is finished.    
         this.runButton.disabled = true;
         try {
             await this.runProg();
