@@ -167,6 +167,10 @@ export class ActiveCode extends RunestoneBase {
         } else if (edmode === "octave" || edmode === "MATLAB") {
             edmode = "text/x-octave";
         }
+
+        if(this.localStorage.getItem(this.divid) !== null)
+            this.code = this.localStorage.getItem(this.divid);
+
         var opts = {
             value: this.code,
             lineNumbers: true,
@@ -179,6 +183,7 @@ export class ActiveCode extends RunestoneBase {
                 "Shift-Tab": "indentLess",
             },
         }
+        console.log('active code code : \n'+this.code)
         // if(this.localStorage.getItem(this.divid) !== null){
         //     opts['value'] = localStorage.getItem(this.divid);
         // }else{
