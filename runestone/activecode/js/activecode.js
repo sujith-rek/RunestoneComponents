@@ -183,12 +183,6 @@ export class ActiveCode extends RunestoneBase {
                 "Shift-Tab": "indentLess",
             },
         }
-        console.log('active code code : \n'+this.code)
-        // if(this.localStorage.getItem(this.divid) !== null){
-        //     opts['value'] = localStorage.getItem(this.divid);
-        // }else{
-        //     localStorage.setItem(this.divid, this.code);
-        // }
         var editor = CodeMirror(codeDiv,opts );
         
         // Make the editor resizable
