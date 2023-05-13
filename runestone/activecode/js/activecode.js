@@ -168,8 +168,8 @@ export class ActiveCode extends RunestoneBase {
             edmode = "text/x-octave";
         }
 
-        if(this.localStorage.getItem(this.divid) !== null)
-            this.code = this.localStorage.getItem(this.divid);
+        if(localStorage.getItem(this.divid) !== null)
+            this.code = localStorage.getItem(this.divid);
 
         var opts = {
             value: this.code,
