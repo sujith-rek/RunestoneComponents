@@ -167,7 +167,11 @@ export class ActiveCode extends RunestoneBase {
         } else if (edmode === "octave" || edmode === "MATLAB") {
             edmode = "text/x-octave";
         }
-        var editor = CodeMirror(codeDiv, {
+
+        if(localStorage.getItem(this.divid) !== null)
+            this.code = localStorage.getItem(this.divid);
+
+        var opts = {
             value: this.code,
             lineNumbers: true,
             mode: edmode,
@@ -178,7 +182,9 @@ export class ActiveCode extends RunestoneBase {
                 Tab: "indentMore",
                 "Shift-Tab": "indentLess",
             },
-        });
+        }
+        var editor = CodeMirror(codeDiv,opts );
+        
         // Make the editor resizable
         $(editor.getWrapperElement()).resizable({
             resize: function () {
@@ -242,7 +248,7 @@ export class ActiveCode extends RunestoneBase {
     }
 
     async runButtonHandler() {
-        // Disable the run button until the run is finished.
+        // Disable the run button until the run is finished.    
         this.runButton.disabled = true;
         try {
             await this.runProg();
@@ -1190,7 +1196,7 @@ Yet another is that there is an internal error.  The internal error message is: 
     }
 
     logCurrentAnswer() {
-        this.logRunEvent({
+        let data = {
             div_id: this.divid,
             code: this.editor.getValue(),
             lang: this.language,
@@ -1199,7 +1205,11 @@ Yet another is that there is an internal error.  The internal error message is: 
             prefix: this.pretext,
             suffix: this.suffix,
             partner: this.partner,
-        }); // Log the run event
+        };
+        
+        localStorage.setItem(this.divid, data['code']);
+        
+        this.logRunEvent(data); // Log the run event
         // If unit tests were run there will be a unit_results
         if (this.unit_results) {
             this.logBookEvent({
@@ -1285,6 +1295,9 @@ Yet another is that there is an internal error.  The internal error message is: 
         });
         Sk.divid = this.divid;
         Sk.logResults = logResults;
+
+        localStorage.setItem(this.divid,this.code);
+
         if (this.graderactive && this.outerDiv.closest(".loading")) {
             Sk.gradeContainer = this.outerDiv.closest(".loading").id;
         } else {
