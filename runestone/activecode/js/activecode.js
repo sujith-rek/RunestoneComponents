@@ -70,6 +70,7 @@ export class ActiveCode extends RunestoneBase {
         this.runButton = null;
         this.enabledownload = $(orig).data("enabledownload");
         this.downloadButton = null;
+        this.resetButton = null;
         this.saveButton = null;
         this.loadButton = null;
         this.outerDiv = null;
@@ -278,6 +279,8 @@ export class ActiveCode extends RunestoneBase {
         this.runButton.onclick = this.runButtonHandler.bind(this);
         $(butt).attr("type", "button");
 
+        this.addResetButton(ctrlDiv);
+
         if (this.enabledownload || eBookConfig.downloadsEnabled) {
             this.addDownloadButton(ctrlDiv);
         }
@@ -352,6 +355,16 @@ export class ActiveCode extends RunestoneBase {
         this.downloadButton = butt;
         $(butt).click(this.downloadFile.bind(this, this.language));
         $(butt).attr("type", "button");
+    }
+
+    addResetButton(ctrlDiv) {
+        let butt = document.createElement("button");
+        $(butt).text("Reset");
+        $(butt).addClass("btn btn-default");
+        $(butt).attr("type", "button");
+        ctrlDiv.appendChild(butt);
+        this.resetButton = butt;
+        $(butt).click(this.resetCode.bind(this));
     }
 
     enableHideShow(ctrlDiv) {
@@ -761,6 +774,11 @@ export class ActiveCode extends RunestoneBase {
         } else {
             alert("Your browser does not support the HTML5 Blob.");
         }
+    }
+
+    resetCode() {
+        localStorage.removeItem(this.divid);
+        window.location.reload();
     }
 
     async createGradeSummary() {
