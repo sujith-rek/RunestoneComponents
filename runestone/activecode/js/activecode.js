@@ -886,7 +886,7 @@ export class ActiveCode extends RunestoneBase {
         }
         myVars.curInstr = 0;
         myVars.codeDivWidth = 350;
-        myVars.codeDivHeight = 600;
+        myVars.codeDivHeight = 400;
         var srcURL = "https://pythontutor.com/iframe-embed.html";
         var srcVars = $.param(myVars);
         var embedUrlStr = `${srcURL}#${srcVars}`;
