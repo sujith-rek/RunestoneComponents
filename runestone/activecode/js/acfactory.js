@@ -34,6 +34,7 @@ export default class ACFactory {
         }
         var text_area = $(opts.orig).find("textarea")[0]
         var python3_interpreter = $(text_area).attr("data-python3_interpreter");
+        var output_height = $(text_area).attr("data-output_height");
         if (opts.timed == true) {
             if(python3_interpreter==="brython"){
                 return new TimedBrythonActiveCode(opts);   

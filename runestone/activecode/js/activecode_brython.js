@@ -120,6 +120,9 @@ document <= html.SCRIPT("let container = document.querySelector('.container-pre'
         } else {
             $(outDiv).addClass("col-md-5");
         }
+        if(this.output_height == undefined){
+            this.output_height = "400px";
+        }
         this.outDiv = outDiv;
         this.output = document.createElement("iframe");
         $(this.output).css("background-color", "white");
