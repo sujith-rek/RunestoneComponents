@@ -71,7 +71,7 @@ TEMPLATE_END = """
     %(hidecode)s %(include)s %(timelimit)s %(coach)s %(codelens)s %(enabledownload)s %(chatcodes)s %(optional)s
     data-audio='%(ctext)s' %(sourcefile)s %(datafile)s %(stdin)s %(tie)s %(dburl)s %(nopair)s
     %(cargs)s %(largs)s %(rargs)s %(iargs)s %(gradebutton)s %(caption)s %(hidehistory)s %(wasmuri)s
-    %(showlastsql)s %(python3_interpreter)s style="visibility: hidden;">
+    %(showlastsql)s %(python3_interpreter)s %(output_height)s style="visibility: hidden;">
 %(initialcode)s
 </textarea>
 </div>
@@ -218,7 +218,8 @@ class ActiveCode(RunestoneIdDirective):
             "nopair": directives.flag,
             "dburl": directives.unchanged,
             "showlastsql": directives.flag,
-            "python3_interpreter": directives.unchanged
+            "python3_interpreter": directives.unchanged,
+            "output_height": directives.unchanged,
         }
     )
 
