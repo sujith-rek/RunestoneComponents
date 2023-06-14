@@ -163,6 +163,7 @@ class ActiveCode(RunestoneIdDirective):
        :dburl: url to load database for sql mode
        :showlastsql: -- Only show the last sql result in output
        :python3_interpreter: brython (uses brython as interpreter of python3)
+       :output_height: 200px (sets the height of the output window)
 
         If this is a homework problem instead of an example in the text
         then the assignment text should go here.  The assignment text ends with
@@ -273,6 +274,11 @@ class ActiveCode(RunestoneIdDirective):
             self.options["python3_interpreter"] = "data-python3_interpreter='%s'" % self.options["python3_interpreter"]
         else:
             self.options["python3_interpreter"] = ""
+
+        if "output_height" in self.options:
+            self.options["output_height"] = "data-output_height='%s'" % self.options["output_height"]
+        else:
+            self.options["output_height"] = ""
 
         if "caption" not in self.options:
             self.options["caption"] = ""
