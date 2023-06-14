@@ -5,6 +5,7 @@ export default class BrythonActiveCode extends ActiveCode {
         super(opts);
         opts.alignVertical = true;
         this.python3_interpreter = $(orig).data("python3_interpreter");
+        this.outputHeight = $(orig).data("output_height");
         $(this.runButton).text("Render");
         this.editor.setValue(this.code);
     }
@@ -123,7 +124,7 @@ document <= html.SCRIPT("let container = document.querySelector('.container-pre'
         this.output = document.createElement("iframe");
         $(this.output).css("background-color", "white");
         $(this.output).css("position", "relative");
-        $(this.output).css("height", "800px");
+        $(this.output).css("height", $(this.outputHeight));
         $(this.output).css("width", "100%");
         outDiv.appendChild(this.output);
         this.outerDiv.appendChild(outDiv);
