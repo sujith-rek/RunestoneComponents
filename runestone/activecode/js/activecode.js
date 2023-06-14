@@ -67,6 +67,7 @@ export class ActiveCode extends RunestoneBase {
         this.tie = $(orig).data("tie");
         this.dburl = $(orig).data("dburl");
         this.python3_interpreter = $(orig).data("python3_interpreter");
+        this.output_height = $(orig).data("output_height");
         this.runButton = null;
         this.enabledownload = $(orig).data("enabledownload");
         this.downloadButton = null;
