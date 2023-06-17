@@ -129,7 +129,8 @@ document <= html.SCRIPT("let container = document.querySelector('.container-pre'
         this.output = document.createElement("iframe");
         $(this.output).css("background-color", "white");
         $(this.output).css("position", "relative");
-        $(this.output).css("height", $(this.output_height));
+        // $(this.output).css("height", $(this.output_height));
+        this.output.style.height = this.output_height;
         $(this.output).css("width", "100%");
         outDiv.appendChild(this.output);
         this.outerDiv.appendChild(outDiv);
