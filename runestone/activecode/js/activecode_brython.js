@@ -120,15 +120,15 @@ document <= html.SCRIPT("let container = document.querySelector('.container-pre'
         } else {
             $(outDiv).addClass("col-md-5");
         }
-        if(this.output_height == undefined || this.output_height == ""){
-            this.output_height = "400px";
-        }
-        console.log(this.output_height + " Brython out height"+typeof(this.output_height));
+        // if(this.output_height == undefined || this.output_height == ""){
+        //     this.output_height = "400px";
+        // }
+
         this.outDiv = outDiv;
         this.output = document.createElement("iframe");
         $(this.output).css("background-color", "white");
         $(this.output).css("position", "relative");
-        $(this.output).css("height", $(this.output_height));
+        $(this.output).css("height", "800px");
         $(this.output).css("width", "100%");
         outDiv.appendChild(this.output);
         this.outerDiv.appendChild(outDiv);
