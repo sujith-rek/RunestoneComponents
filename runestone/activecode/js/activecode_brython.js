@@ -123,7 +123,7 @@ document <= html.SCRIPT("let container = document.querySelector('.container-pre'
         if(this.output_height == undefined || this.output_height == ""){
             this.output_height = "400px";
         }
-        console.log(this.output_height + " Brython out height");
+        console.log(this.output_height + " Brython out height"+typeof(this.output_height));
         this.outDiv = outDiv;
         this.output = document.createElement("iframe");
         $(this.output).css("background-color", "white");
